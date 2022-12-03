@@ -1,4 +1,3 @@
-
 # 前言
 
 Raft 是用于管理日志复制的共识算法。共识算法适用于包含多台机器的集群中，以保证在其中有些机器挂掉时仍然能正常对外提供服务。由此，共识算法在构建可靠的大规模软件系统中十分重要。
@@ -80,3 +79,119 @@ Raft 机器之间的基本通信只需要两种类型的 RPC。拉票请求（Re
 
 # 算法实现
 
+论文在 Figure 2 中给出了一个非常详细的实现（~~that's why raft is awesome!~~）
+
+## Server 状态
+
+```go
+type ServerState struct {
+	/***** 所有 Server 都包含的持久状态 *****/
+	// CurrentTerm 机器遇到的最大的任期，启动时初始化为 0，单调递增
+	CurrentTerm int64;
+	// VotedFor 当前任期内投票的 Candidate ID，未投票则为 nil
+	VotedFor    *int64;
+	// Logs 日志条目，每个条目都包含了一条状态机指令和 Leader 接收该条目时的任期，index 从 1 开始
+	Logs        []*Log;
+
+	/***** 所有 Server 都包含的可变状态 *****/
+	// CommitIndex 已知的最大的即将提交的日志序号，启动时初始化为 0，单调递增
+	CommitIndex int64;
+	// LastApplied 最大的已提交的日志序号，启动时初始化为 0，单调递增
+	LastApplied int64;
+
+	/******* Leader 包含的可变状态，选举后初始化 *******/
+	// NextIndex 每台机器下一个要发送的日志条目的序号，初始化为 Leader 最后一个日志序号 +1
+	NextIndex  []int64;
+	// MatchIndex 每台机器已知复制的最高的日志条目，初始化为 0，单调递增
+	MatchIndex []int64;
+}
+```
+
+## 追加请求
+
+
+```go
+type AppendEntriesRequest struct {
+	// Term Leader 的任期
+	Term         int64
+	// LeaderID Follower 可以将客户端请求重定向到 Leader
+	LeaderID     int64
+	// PrevLogIndex 新日志条目前一个日志条目的日志序号
+	PrevLogIndex int64
+	// PrevLogTerm 前一个日志条目的任期
+	PrevLogTerm  int64
+	// Entries 需要保存的日志条目，心跳包为空
+	Entries      []*Log
+	// LeaderCommit Leader 的 CommitIndex
+	LeaderCommit int64
+}
+
+type AppendEntriesResponse struct {
+	// Term Follower 当前任期
+	Term    int64
+	// Success Follower 包含 PrevLogIndex 和 PrevLogTerm 的日志条目为 true
+	Success bool
+}
+```
+
+接收者的实现：
+1. 如果 Term 小于 CurrentTerm，返回 false
+2. 如果日志中不包含 PrevLogIndex 和 PrevLogTerm 对应的日志条目，返回 false
+3. 如果某个现有的日志条目和新条目包含了相同的日志序号但是有不同的任期，删除该条和其后所有的日志
+4. 添加所有在日志中不存在的日志条目
+5. 如果 LeaderCommit 大于 CommitIndex，则将 CommitIndex 设置为 LeaderCommit 或者新日志中最后一个序号之间的较小值
+
+## 拉票请求
+
+
+```go
+type RequestVoteRequest struct {
+	// Term Candidate 的任期
+	Term         int64
+	// CandidateId 拉票的 Candidate 的 ID
+	CandidateId  int64
+	// LastLogIndex Candidate 最后一条日志序列的序号
+	LastLogIndex int64
+	// LastLogTerm Candidate 最后一条日志序列的任期
+	LastLogTerm  int64
+}
+
+type RequestVoteResponse struct {
+	// Term 当前任期
+	Term        int64
+	// VoteGranted true 则拉票成功
+	VoteGranted bool
+}
+```
+
+接收者实现：
+1. 如果 Term 小于 CurrentTerm，返回 false
+2. 如果 VotedFor 是 nil 或者 CandidateId，且 Candidate 的日志和接收者一样新或者更新，则返回 true
+
+## Server 规则
+
+对于所有机器：
+- 如果 CommitIndex 大于 LastApplied，LastApplied +1，并将日志 log\[LastApplied\] 提交到状态机
+- 如果 RPC 请求或者相应中的 Term 大于 CurrentTerm，则将 CurrentTerm 设置为 Term，并转变为 Follower
+
+对于 Follower：
+- 相应来自 Candidate 和 Leader 的 RPC
+- 如果一直到选举超时也没有收到来自当前 Leader 的追加请求或者给某个 Candidate 投票（注意不是收到拉票请求，而是投票），则转变为 Candidate
+
+对于 Candidate：
+- 一旦转变成 Candidate，即开始选举：
+	- 将当前任期 +1
+	- 给自己投票
+	- 重制选举超时计时器
+	- 向所有其他机器发送拉票请求
+- 如果收到了大多数机器的票，则转变成 Leader
+- 如果收到来自新 Leader 的追加请求，转变为 Follower
+- 如果选举超时，开始新一轮选举
+
+对于 Leader：
+- 一旦转变成 Leader，向其他所有机器发送空的追加请求；在空闲时重复发送空追加请求来防止选举超时
+- 如果收到来自客户端的指令：添加日志条目到日志中，在条目提交到状态机后返回相应
+- 如果最后一条日志序号大于某个客户端的 NextIndex：向客户端发送包含 NextIndex 及其后所有日志条目的追加请求
+	- 如果成功，更新 Follower 的 NextIndex 和 MatchIndex
+	- 如果因为日志连续性而失败，NextIndex -- 并重拾
+- 如果存在一个 N 大于 CommitIndex，大多数 MatchIndex 大于等于 N，且第 N 条日志的任期等于当前任期，则设置 CommitIndex 为 N
