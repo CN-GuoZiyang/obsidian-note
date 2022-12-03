@@ -8,7 +8,7 @@
         "type": "tabs",
         "children": [
           {
-            "id": "734860581e96589d",
+            "id": "4248895089076a97",
             "type": "leaf",
             "state": {
               "type": "markdown",
@@ -18,21 +18,8 @@
                 "source": true
               }
             }
-          },
-          {
-            "id": "4248895089076a97",
-            "type": "leaf",
-            "state": {
-              "type": "markdown",
-              "state": {
-                "file": "README.md",
-                "mode": "source",
-                "source": false
-              }
-            }
           }
-        ],
-        "currentTab": 1
+        ]
       }
     ],
     "direction": "vertical"
@@ -98,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "MIT 6.824 分布式系统/raft-extended 阅读.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "MIT 6.824 分布式系统/raft-extended 阅读.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "MIT 6.824 分布式系统/raft-extended 阅读.md"
               }
             }
           },
@@ -155,10 +142,12 @@
       }
     ],
     "direction": "horizontal",
-    "width": 300
+    "width": 300,
+    "collapsed": true
   },
   "active": "4248895089076a97",
   "lastOpenFiles": [
+    "README.md",
     "MIT 6.824 分布式系统/raft-extended 阅读.md",
     "MIT 6.824 分布式系统/未命名.md"
   ]
