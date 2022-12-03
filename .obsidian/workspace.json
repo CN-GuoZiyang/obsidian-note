@@ -18,8 +18,21 @@
                 "source": true
               }
             }
+          },
+          {
+            "id": "4248895089076a97",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "README.md",
+                "mode": "source",
+                "source": false
+              }
+            }
           }
-        ]
+        ],
+        "currentTab": 1
       }
     ],
     "direction": "vertical"
@@ -85,7 +98,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "MIT 6.824 分布式系统/raft-extended 阅读.md",
+                "file": "README.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +115,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "MIT 6.824 分布式系统/raft-extended 阅读.md",
+                "file": "README.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +138,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "MIT 6.824 分布式系统/raft-extended 阅读.md"
+                "file": "README.md"
               }
             }
           },
@@ -144,7 +157,7 @@
     "direction": "horizontal",
     "width": 300
   },
-  "active": "55bb8b94495572e3",
+  "active": "4248895089076a97",
   "lastOpenFiles": [
     "MIT 6.824 分布式系统/raft-extended 阅读.md",
     "MIT 6.824 分布式系统/未命名.md"
