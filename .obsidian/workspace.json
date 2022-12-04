@@ -13,9 +13,9 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "README.md",
+                "file": "MIT 6.824 分布式系统/raft-extended 阅读.md",
                 "mode": "source",
-                "source": false
+                "source": true
               }
             }
           }
@@ -85,7 +85,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "README.md",
+                "file": "MIT 6.824 分布式系统/raft-extended 阅读.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -102,7 +102,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "README.md",
+                "file": "MIT 6.824 分布式系统/raft-extended 阅读.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -125,7 +125,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "README.md"
+                "file": "MIT 6.824 分布式系统/raft-extended 阅读.md"
               }
             }
           },
@@ -147,9 +147,9 @@
   },
   "active": "44cec58f3f7b5c26",
   "lastOpenFiles": [
+    "README.md",
     "MIT 6.824 分布式系统/raft-extended 阅读.md",
     "PKU 编程语言的设计原理/类型和程序设计语言.pdf",
-    "README.md",
     "MIT 6.824 分布式系统/未命名.md"
   ]
 }
