@@ -25,14 +25,26 @@
             "state": {
               "type": "markdown",
               "state": {
-                "file": "PKU 编程语言的设计原理/材料.md",
+                "file": "MIT 6.824 分布式系统/raft-extended 阅读.md",
+                "mode": "source",
+                "source": false
+              }
+            }
+          },
+          {
+            "id": "48a45512dd10d82f",
+            "type": "leaf",
+            "state": {
+              "type": "markdown",
+              "state": {
+                "file": "PKU 编程语言的设计原理/TaPL 第一章 引论.md",
                 "mode": "source",
                 "source": false
               }
             }
           }
         ],
-        "currentTab": 1
+        "currentTab": 2
       }
     ],
     "direction": "vertical"
@@ -98,7 +110,7 @@
             "state": {
               "type": "backlink",
               "state": {
-                "file": "PKU 编程语言的设计原理/材料.md",
+                "file": "PKU 编程语言的设计原理/TaPL 第一章 引论.md",
                 "collapseAll": false,
                 "extraContext": false,
                 "sortOrder": "alphabetical",
@@ -115,7 +127,7 @@
             "state": {
               "type": "outgoing-link",
               "state": {
-                "file": "PKU 编程语言的设计原理/材料.md",
+                "file": "PKU 编程语言的设计原理/TaPL 第一章 引论.md",
                 "linksCollapsed": false,
                 "unlinkedCollapsed": true
               }
@@ -138,7 +150,7 @@
             "state": {
               "type": "outline",
               "state": {
-                "file": "PKU 编程语言的设计原理/材料.md"
+                "file": "PKU 编程语言的设计原理/TaPL 第一章 引论.md"
               }
             }
           },
@@ -158,11 +170,12 @@
     "width": 300,
     "collapsed": true
   },
-  "active": "17a69c3637209aec",
+  "active": "48a45512dd10d82f",
   "lastOpenFiles": [
+    "MIT 6.824 分布式系统/raft-extended 阅读.md",
+    "PKU 编程语言的设计原理/材料.md",
     "README.md",
     "Nand2Tetris 计算机体系结构/The Elements of Computing Systems_ Building a Modern Computer from First Principles_Noam Nisan, Shimon Schocken.pdf",
-    "MIT 6.824 分布式系统/raft-extended 阅读.md",
     "PKU 编程语言的设计原理/类型和程序设计语言.pdf",
     "MIT 6.824 分布式系统/未命名.md"
   ]
