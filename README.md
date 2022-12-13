@@ -10,3 +10,6 @@ Timetable：
 Where is morning?   😴 Sleeping
 
 Mon - Fri Afternoon 💻 Working
+
+Other issue:
+- Learning VIM
