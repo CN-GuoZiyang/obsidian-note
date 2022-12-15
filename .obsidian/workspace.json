@@ -15,7 +15,7 @@
               "state": {
                 "file": "MIT 6.824 分布式系统/6.824 实验 2a —— Leader 选举.md",
                 "mode": "source",
-                "source": false
+                "source": true
               }
             }
           }
@@ -148,9 +148,9 @@
   "active": "a98c8130a4c4d17b",
   "lastOpenFiles": [
     "MIT 6.824 分布式系统/6.824 实验 1 —— MapReduce.md",
+    "MIT 6.824 分布式系统/6.824 实验 2a —— Leader 选举.md",
     "MIT 6.824 分布式系统/mapreduce 论文阅读.md",
     "MIT 6.824 分布式系统/raft-extended 论文阅读.md",
-    "MIT 6.824 分布式系统/6.824 实验 2a —— Leader 选举.md",
     "杂谈/工作一年半，我都折腾了些什么好玩的.md",
     "README.md",
     "MIT 6.824 分布式系统/raft-extended.pdf",
