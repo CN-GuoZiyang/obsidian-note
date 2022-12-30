@@ -136,14 +136,21 @@
               "type": "calendar",
               "state": {}
             }
+          },
+          {
+            "id": "359501d47bf9152b",
+            "type": "leaf",
+            "state": {
+              "type": "advanced-tables-toolbar",
+              "state": {}
+            }
           }
         ],
-        "currentTab": 3
+        "currentTab": 4
       }
     ],
     "direction": "horizontal",
-    "width": 300,
-    "collapsed": true
+    "width": 300
   },
   "left-ribbon": {
     "hiddenItems": {
@@ -158,7 +165,7 @@
       "random-note:开始漫游笔记": false
     }
   },
-  "active": "a98c8130a4c4d17b",
+  "active": "ea6b3bb0f8a9e8c0",
   "lastOpenFiles": [
     "MIT 6.824 分布式系统/6.824 实验 1 —— MapReduce.md",
     "MIT 6.824 分布式系统/6.824 实验 2a —— Leader 选举.md",
