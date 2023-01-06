@@ -1,9 +1,7 @@
 [
-  "remotely-save",
   "calendar",
   "table-editor-obsidian",
   "cm-editor-syntax-highlight-obsidian",
   "obsidian-annotator",
-  "cmenu-plugin",
   "obsidian-git"
 ]
